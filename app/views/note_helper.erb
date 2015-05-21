@@ -1,0 +1,10 @@
+<div class="col-md-3">
+	<ul>
+		<% @notes.each do |note| %>
+			<div class="row">
+				<a class="btn col-md-8" href="/notebook/<%= notebook.id %>"><%= notebook.title %>
+				</a>
+			</div>
+		<% end %>
+	</ul>
+</div>

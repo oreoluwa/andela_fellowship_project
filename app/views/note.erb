@@ -1,0 +1,19 @@
+<div class="col-md-8">
+	<!-- implement read/edit mode here-->
+	<form action="<%= @action_url %>" method="POST" >
+		<div class="form-body">
+			<div class="form-group">
+				<%= @input_form.create_form("title", {'type' => 'text', 'class' => 'form-control', 'placeholder' => 'Note Title'}, {:conditions => @params , :value_if_condition => @notetitle, :value_if_not_condition => ''}) %>
+			</div>
+			<div class="form-group">
+				<textarea class="form-control" rows="6" name="content" placeholder="Note" required><%= @notecontent %></textarea>
+			</div>
+			<div class="form-group">
+				<%= @input_form.create_form('tags', {'type' => 'text', 'class' => 'form-control', 'placeholder' => 'Enter Comma Seperated Tags'}, {:conditions => @params , :value_if_condition => @notetags, :value_if_not_condition => ''}) %>
+			</div>
+				<input type="hidden" name="_method" value="PUT" />
+		</div>
+		<%= erb @note_action_btn.to_sym %>
+	</form>
+	<hr />
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet'>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= @title || 'Write' %></title>
+<meta name="description" content="Mobile App Coming Soon Landing Page">
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+<link href="/css/plugins_i.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+<%= erb :nav %>
+
+
+<%= yield %>
+
+
+</body>
+<!--site-footer-->
+<footer class="site-footer section-spacing">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="scroll-top"><a href="index.html#"><i class="fa fa-chevron-up"></i></a></p>
+        
+        <!--social-->
+        
+        <ul class="social">
+          <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="http://instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+        
+        <!--social end--> 
+        
+        <small>&copy; Write <%= Time.now.strftime("%Y")  %>. All Rights Reserved.</small>
+        <p><a href="index.html" data-toggle="modal" data-target="#privacy">Privacy</a> | <a href="index.html" data-toggle="modal" data-target="#terms">Terms of Use</a></p>
+             
+      </div>
+    </div>
+  </div>
+</footer>
+<!--site-footer end--> 
+
+<!--PRELOAD-->
+<div id="preloader">
+  <div id="status"></div>
+</div>
+<!--end PRELOAD--> 
+
+<script src="/js/plugins.min.js"></script> 
+<script src="/js/main.js"></script>
+</body>
+</html>

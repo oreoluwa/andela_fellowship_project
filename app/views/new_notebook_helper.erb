@@ -1,0 +1,25 @@
+<div class="col-md-8">
+	<form method="POST" name="new_note" action="/notebook/new" class="form-horizontal" id="newnoteform">
+		<div class="form-body">
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="name">Title</label>
+					<div class="col-md-9">
+						<div class="input-group">
+							<input name="title" class="form-control" placeholder="Notebook Title" type="text" value="">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="name">Description</label>
+					<div class="col-md-9">
+						<div class="input-group">
+							<textarea name="description" class="form-control" placeholder="A brief description for this notebook"></textarea>
+						</div>
+					</div>
+				</div>
+			<div class="form-group">
+				<button type="submit" class="col-md-offset-5 btn btn-default">Create Notebook</button>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<%#= erb :notebook_helper %>
+
+		<div class="col-md-3">
+			<div class="col-md-12">
+				<form action="/notebook/<%= @notebook.id %>" method="POST">
+					<input type="hidden" name="_method" value"DELETE" />
+					<button type="submit" class="btn btn-danger" >Delete <%= @notebook.title %></button>
+				</form>
+			</div>
+			<hr />
+			<% @notebook.notes.each do |note| %>
+				<li><a href="/notebook/note/<%= @notebook.id %>/<%= note.id %>"><%= note.title %></a></li>
+			<% end %>
+		</div>
+		
+		<%= erb :note %>
+	</div>
+</div>
