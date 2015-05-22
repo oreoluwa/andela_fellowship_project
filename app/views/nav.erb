@@ -6,11 +6,10 @@
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
-        <% if session[:user] %>
+        <% if @user %>
           <li><a href="/notebook">All Notebooks</a></li>
           <li><a href="/user/logout">Log Out</a></li>
         <% end %>
-        
       </ul>
     </div>
   </div>

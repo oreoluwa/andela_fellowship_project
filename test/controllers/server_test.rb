@@ -18,4 +18,25 @@ class MyAppTest < Minitest::Test
     get '/'
     assert_equal 200, last_response.status
   end
+
+  def test_homepage_login_redirect
+    get '/login'
+    assert_equal 302, last_response.status
+  end
+
+  def test_homepage_register_redirect
+  	get '/register' 
+  	assert_equal 302, last_response.status
+  end
+
+  def test_user_register_redirect
+  	get '/user/register' 
+  	assert_equal 200, last_response.status
+  end
+
+  def test_user_login_redirect
+  	get '/user/login' 
+  	assert_equal 200, last_response.status
+  end
+
 end
