@@ -53,7 +53,9 @@ class NotebookController < Server
 
   post '/new' do
     check_can_access
-    notebook = Notebook.create(user_id: session[:user], title: params[:title], description: params[:description], last_updated_on: Time.now )
+    notebook = Notebook.create(user_id: session[:user][:id], title: params[:title], description: params[:description], last_updated_on: Time.now)
+    notebook.save!
+    puts notebook.to_s
     redirect '/notebook'
   end
 
@@ -78,20 +80,21 @@ class NotebookController < Server
   end
 
   def check_can_access
-    if !session[:user]
+    if !session[:user][:id]
+      puts "I cant post to db here"
       redirect '/user/login'
     end
   end
 
   def can_access_notebook notebook_id
-    user = session[:user]
+    user = session[:user][:id]
     if !User.get(user).notebook.get(notebook_id)
       redirect '/notebook'
     end
   end
 
   def can_access_note(notebook_id, note_id)
-    user = session[:user]
+    user = session[:user][:id]
     if !User.get(user).notebook.get(notebook_id).notes.get(note_id)
       redirect '/notebook'
     end
@@ -103,17 +106,17 @@ class NotebookController < Server
   end
 
   def get_notebook notebook_id
-    user = session[:user]
+    user = session[:user][:id]
     return User.get(user).notebook.get(notebook_id)
   end
 
   def get_all_notes notebook_id
-    user = session[:user]
+    user = session[:user][:id]
     return User.get(user).notebook.get(notebook_id).notes.all
   end
 
   def get_note notebook_id, note_id
-      user = session[:user]
+      user = session[:user][:id]
       return User.get(user).notebook.get(notebook_id).notes.get(note_id)
   end
 

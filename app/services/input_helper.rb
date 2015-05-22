@@ -3,10 +3,10 @@ class InputForms
 
 	def initialize(name)
 		@name = name
-		@internal_object = Hash.new
 	end
 
 	def create_form(name="", attributes={}, values={:conditions => false, :value_if_condition => '', :value_if_not_condition => ''})
+		@internal_object = Hash.new
 		set_name name
 		set_attributes attributes
 		set_values values

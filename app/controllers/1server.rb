@@ -12,6 +12,27 @@ class Server < Sinatra::Base
     use Rack::Flash#, accessorize: [:error, :success]
     #use Rack::Session::Cookie, secret: "ReallyMustIHaveOne"
 
+
+    register do
+      def auth(type)
+        condition do
+          redirect '/user/login' unless send("is_#{type}")
+        end
+      end
+    end
+
+    helpers do
+      def is_user?
+        @user != nil
+      end
+    end
+
+    before do
+        if session[:user]
+            @user = User.get(session[:user][:id])
+        end
+    end
+
     get '/' do
         if !session[:user].nil?
             redirect '/notebook'

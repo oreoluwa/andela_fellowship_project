@@ -1,6 +1,8 @@
 #require 'sinatra/flash'
 
 class UserController < Server
+
+
     get '/' do
       #user profile here
     end
@@ -26,24 +28,12 @@ class UserController < Server
       erb :register, :layout => :layout1
     end
 
-    get '/logout' do
-      #env['warden'].raw_session.inspect
-      #env['warden'].logout
-      flash[:success] = 'Successfully logged out'
+    get "/logout" do
+      session[:user] = nil
       redirect '/'
     end
 
-    post 'unathenticated' do
-      session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
-      flash[:error] = env['warden.options'][:message] || "You must be logged in"
-      redirect '/user/login'
-    end
-
-    get '/forgot_password' do
-      erb :forgot_password
-    end
-
-
+=begin
     put '/user/profile' do
       user = UserManager.new
       redirect '/user/profile' if !params.nil?
@@ -51,6 +41,7 @@ class UserController < Server
       userId = user.id
       redirect "/user/#{userId}/profile"
     end
+=end
 
     post '/login' do
       logged_in
@@ -58,24 +49,28 @@ class UserController < Server
       if !params 
         redirect '/user/login'
       end
-      
+
       session[:error_login_message] = nil
-      user = User.first(:conditions => {:email => params[:email], :password => params[:password]})
-      if !user
+      user = User.first(:conditions => {:email => params[:email]})
+
+      #puts user.to_s
+      if !user && user.password != params[:password]
         return_params = {error_message: 'Unknown Username and Password', email: params[:email] }
         session[:error_login_message] = return_params
         redirect '/user/login'
-      end
+      else
         session[:user] = {}
         session[:user][:id] = user.id
         session[:user][:name] = user.name
         redirect '/notebook'
-    end
+      end
 
+    end
+=begin
     post '/forgot_password' do
 
     end
-
+=end
     post '/register' do
       logged_in
       #if no  user data redirect
@@ -104,7 +99,7 @@ class UserController < Server
     end
 
     put '/user/:id' do |id|
-      if flash[:user_logged_in]
+      if 
         redirect '/notebook'
       end
 
@@ -121,6 +116,11 @@ class UserController < Server
       redirect '/notebook' if !session[:user].nil?
     end
 
+    def is_valid_user?
+      if !session[:user]
+        return false
+      end
+    end
 
 
   # start the server if ruby file executed directly
