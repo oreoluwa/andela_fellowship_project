@@ -1,14 +1,14 @@
 <div class="col-md-3">
 	<ul>
+		<div class="row">
+			<span class="btn btn-info toggle_search">Search <i class="fa fa-spin fa-circle-o-notch"></i></span>
+			<span class="btn btn-success toggle_notebook">Add Notebook <i class="fa fa-plus"></i></span>
+		</div>
 		<% @notebooks.each do |notebook| %>
 			<div class="row">
 				<a class="btn col-md-8" href="/notebook/<%= notebook.id %>"><%= notebook.title %>
 				</a>
 			</div>
 		<% end %>
-		<div class="row">
-			<span class="btn btn-info get_search">Search <i class="fa fa-spin fa-circle-o-notch"></i></span>
-			<span class="btn btn-success">Add Notebook <i class="fa fa-plus"></i></span>
-		</div>
 	</ul>
 </div>

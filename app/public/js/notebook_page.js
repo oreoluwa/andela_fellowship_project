@@ -1,3 +1,10 @@
 $(function(){
-	
-})
+	$('.toggle_search').click(function(e){
+		$('.create_notebook').removeClass('show').addClass('hide')
+		$('.search_page').removeClass('hide').addClass('show')
+	})
+	$('.toggle_notebook').click(function(e){
+		$('.search_page').removeClass('show').addClass('hide')
+		$('.create_notebook').removeClass('hide').addClass('show')
+	})
+});
