@@ -11,7 +11,7 @@
 			<div class="form-group">
 				<%= @input_form.create_form('tags', {'type' => 'text', 'class' => 'form-control', 'placeholder' => 'Enter Comma Seperated Tags'}, {:conditions => @params , :value_if_condition => @notetags, :value_if_not_condition => ''}) %>
 			</div>
-				<input type="hidden" name="_method" value="PUT" />
+				<input type="hidden" name="_method" value="<%= @method %>" />
 		</div>
 		<%= erb @note_action_btn.to_sym %>
 	</form>

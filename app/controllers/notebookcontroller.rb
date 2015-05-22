@@ -26,6 +26,7 @@ class NotebookController < Server
     @notetags = ''
     @usernotes = @notebook.notes
     @params = false
+    @method = 'POST'
     @input_form = InputForms.new('notebook')
     @note_action_btn = 'new_note_btns'
     @action_url = "/notebook/note/#{notebookid}/new"
@@ -38,6 +39,7 @@ class NotebookController < Server
 
   	notebookid = notebookid.to_i
   	noteid = id.to_i
+    @method = 'PUT'
     @notebook = get_notebook notebookid
     @note = @notebook.notes.get(noteid)
   	@title = @note.title
@@ -64,8 +66,13 @@ class NotebookController < Server
     check_can_access
     notebookid = params[:notebookid].to_i
     can_access_notebook notebookid
-
-    note = Note.create(title: params[:title], content: params[:content], tags: params[:tags], notebook_id: notebookid)
+    #note = Note.create(title: params[:title], content: params[:content], tags: params[:tags], notebook_id: notebookid)
+    note = Note.new
+    note.title = params[:title]
+    note.content = params[:content]
+    note.tags = params[:tags]
+    note.notebook_id = notebookid
+    note.save!
     redirect "/notebook/note/#{notebookid}/#{note.id}"
   end
 
@@ -77,6 +84,23 @@ class NotebookController < Server
   put '/note/:notebookid/:id' do |notebookid, id|
     check_can_access
     can_access_note(notebookid, id)
+
+    note = get_note(notebookid, id)
+    note.title = params[:title]
+    note.content = params[:content]
+    note.tags = params[:tags]
+    note.save!
+    redirect "/notebook/note/#{notebookid}/#{noteid}"
+  end
+
+  delete '/note/:notebookid/:id' do
+    notebookid = params[:notebook]
+    noteid = params[:id]
+    can_access_note(notebookid, noteid)
+    
+    note = get_note notebookid, noteid
+    note.destroy!
+    
   end
 
   def check_can_access
