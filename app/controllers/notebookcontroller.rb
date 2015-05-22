@@ -1,6 +1,10 @@
 
 class NotebookController < Server
 
+  before do
+    check_can_access
+  end
+  
   get '/' do
     check_can_access
 
@@ -17,7 +21,7 @@ class NotebookController < Server
   get '/note' do
     search_for = params[:search]
     @title = "Search for #{search_for}"
-    @note_search_results = User.get(@user.id).notebook.all.notes.all(:content.like => "%#{search_for}%")
+    @note_search_results = User.get(@user.id).notebook.all.notes.all(:content.like => "%#{search_for}%", :order => :created_at.desc)
     erb :search_page, :layout => :layout1
     #redirect '/'
 

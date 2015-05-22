@@ -11,7 +11,9 @@
 			</div>
 			<hr />
 			<% @notebook.notes.each do |note| %>
-				<li><a href="/notebook/note/<%= @notebook.id %>/<%= note.id %>"><%= note.title %></a></li>
+				<div class="row btn">
+					<a href="/notebook/note/<%= @notebook.id %>/<%= note.id %>"><%= note.title %></a>
+				</div>
 			<% end %>
 		</div>
 		

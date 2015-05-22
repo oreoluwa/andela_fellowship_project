@@ -22,7 +22,7 @@ DataMapper.auto_upgrade!
 #DataMapper.auto_migrate!
 
 #require my services
-Dir[APP_ROOT.join('app', 'services', '*.rb')].each { |file| require file }
+Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # configure Server settings
 class Server < Sinatra::Base

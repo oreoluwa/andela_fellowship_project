@@ -9,7 +9,7 @@ class Note
 
 	property :id, Serial
 	property :title, String, :required => true
-	property :tags, String, :default => 'My note', :required => true
+	property :tags, String, :default => 'My note'
 	property :content, Text
 	property :created_at, DateTime
 	property :last_updated_on, DateTime
