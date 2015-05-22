@@ -1,0 +1,12 @@
+<div class="container">
+	<h2><%= @title %></h2>
+	<div>
+		<% @note_search_results.each do |note| %>
+			<div class="well">
+				<h4><a title="<%= note.title %>" href="/notebook/note/<%= note.notebook.id %>/<%= note.id %>"><%= note.title %></a></h4>
+				<p><%= note.content %></p>
+				<small>Was found in <a title="<%= note.notebook.title %>" href="/notebook/<%= note.notebook.id %>"><%= note.notebook.title %></a><small>
+			</div>
+		<% end %>
+	</div>
+</div>

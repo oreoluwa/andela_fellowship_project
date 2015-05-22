@@ -16,6 +16,9 @@
 <body>
 
 <%= erb :nav %>
+<%if @title != 'Home' %>
+  <%= erb :search_form %>
+<% end %>
 
 
 <%= yield %>

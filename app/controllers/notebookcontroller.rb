@@ -14,6 +14,15 @@ class NotebookController < Server
       redirect '/notebook/#{id}'
   end
 
+  get '/note' do
+    search_for = params[:search]
+    @title = "Search for #{search_for}"
+    @note_search_results = User.get(@user.id).notebook.all.notes.all(:content.like => "%#{search_for}%")
+    erb :search_page, :layout => :layout1
+    #redirect '/'
+
+  end
+
   get '/:notebookid' do |id|
     check_can_access
     can_access_notebook id
@@ -90,7 +99,7 @@ class NotebookController < Server
     note.content = params[:content]
     note.tags = params[:tags]
     note.save!
-    redirect "/notebook/note/#{notebookid}/#{noteid}"
+    redirect "/notebook/note/#{notebookid}/#{note.id}"
   end
 
   delete '/note/:notebookid/:id' do
@@ -98,49 +107,50 @@ class NotebookController < Server
     noteid = params[:id]
     can_access_note(notebookid, noteid)
     
-    note = get_note notebookid, noteid
+    note = get_note(notebookid, noteid)
     note.destroy!
-    
+    redirect "/notebook/#{notebookid}"
+
   end
 
   def check_can_access
-    if !session[:user][:id]
-      puts "I cant post to db here"
+    if !@user
+      #puts "I cant post to db here"
       redirect '/user/login'
     end
   end
 
   def can_access_notebook notebook_id
-    user = session[:user][:id]
+    user = @user.id
     if !User.get(user).notebook.get(notebook_id)
       redirect '/notebook'
     end
   end
 
   def can_access_note(notebook_id, note_id)
-    user = session[:user][:id]
+    user = @user.id
     if !User.get(user).notebook.get(notebook_id).notes.get(note_id)
       redirect '/notebook'
     end
   end
 
   def get_all_notebooks
-    user = session[:user][:id]
+    user = @user.id
     return User.get(user).notebook.all
   end
 
   def get_notebook notebook_id
-    user = session[:user][:id]
+    user = @user.id
     return User.get(user).notebook.get(notebook_id)
   end
 
   def get_all_notes notebook_id
-    user = session[:user][:id]
+    user = @user.id
     return User.get(user).notebook.get(notebook_id).notes.all
   end
 
   def get_note notebook_id, note_id
-      user = session[:user][:id]
+      user = @user.id
       return User.get(user).notebook.get(notebook_id).notes.get(note_id)
   end
 
