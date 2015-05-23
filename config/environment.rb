@@ -21,7 +21,7 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 #DataMapper.auto_migrate!
 
-#require my services
+#require my helpers
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # configure Server settings

@@ -13,4 +13,4 @@ Note taking application for the Andela Fellowship
 
 ## Test
 
-- Rub `ruby test/<path_to_test_file>` to run a test
+- Run `ruby test/<path_to_test_file>` to run a test
