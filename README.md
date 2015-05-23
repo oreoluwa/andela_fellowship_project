@@ -1,6 +1,6 @@
-HEAD
-Bootcamp Ruby Project
+Note Taking Application
 ================
+Note taking application for the Andela Fellowship
 
 ## Prerequisites
 
@@ -14,7 +14,3 @@ Bootcamp Ruby Project
 ## Test
 
 - Rub `ruby test/<path_to_test_file>` to run a test
-=======
-# andela_fellowship_project
-Note taking application for the Andela Fellowship
->>>>>>> 14eefc810c4f6d876d752f1234fecfe1d5971af0
