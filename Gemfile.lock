@@ -76,7 +76,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.4-x86-mingw32)
       mini_portile2 (~> 2.4.0)
-    rack (1.6.11)
+    rack (1.6.12)
     rack-flash3 (1.0.5)
       rack
     rack-protection (1.5.5)
